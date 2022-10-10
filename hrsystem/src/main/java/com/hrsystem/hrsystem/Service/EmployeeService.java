@@ -133,25 +133,15 @@ public class EmployeeService {
 
     public List<EmployeeFindAllDto> getAllEmployeesHierarchical(Integer managerid) throws Exception {
         Employee manager = employeeRepository.findById(managerid).orElseThrow();
-        List<Employee> employees = employeeRepository.getEmployees(managerid);
-//        getAllEmployees(manager);
+        List<Employee> employees = new ArrayList<Employee>();
+        getAllEmployees(manager, employees);
         List <EmployeeFindAllDto> employeeFindAllDtos = new ArrayList<>();
-//        for (int i = 0; i < employees.size(); i++) {
-//            getEmployeeByID(employees.get(i).getId());
-//        }
         for (int i = 0; i < employees.size(); i++) {
             employeeFindAllDtos.add(employeeMapper.employeeConvertToEmployeeDto(employees.get(i)));
         }
         return employeeFindAllDtos;
     }
 
-//    private void getAllEmployees(Employee manager) {
-//        List<Employee> employees=employeeRepository.getEmployees(manager.getId());
-//            for (int i = 0; i < employees.size(); i++) {
-//                if (employeeRepository.getEmployees(employees.get(i).getId())==null||employees.isEmpty())return;
-//                employees.add(employees.get(i));
-//            }
-//    }
     private Boolean getEmployeeHasNotManagerChecker() throws Exception{
         if (employeeRepository.getAllEmployees() != null) {
             List <Employee> employees = employeeRepository.getAllEmployees();
@@ -161,6 +151,12 @@ public class EmployeeService {
                 return false ;
         }else
             throw new Exception();
+    }
+
+    private void getAllEmployees(Employee manager, List<Employee> employees) {
+        if (employeeRepository.getEmployees(manager.getId()) == null || employeeRepository.getEmployees(manager.getId()).size() == 0) return;
+        employees.addAll(employeeRepository.getEmployees(manager.getId()));
+        employeeRepository.getEmployees(manager.getId()).forEach(employee -> getAllEmployees(employee, employees));
     }
 
 }

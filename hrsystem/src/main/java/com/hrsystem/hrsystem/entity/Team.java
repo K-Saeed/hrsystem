@@ -12,10 +12,6 @@ public class Team {
     private Integer id;
     private String tname;
 
-//    @OneToMany(mappedBy = "team"
-//            , cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private List<Employee> employees = new ArrayList<>();
-
     public Team() {
     }
 
@@ -31,12 +27,5 @@ public class Team {
     public void setId(Integer id) {
         this.id = id;
     }
-//
-//    public List<Employee> getEmployees() {
-//        return employees;
-//    }
-//
-//    public void setEmployees(List<Employee> employees) {
-//        this.employees = employees;
-//    }
+
 }

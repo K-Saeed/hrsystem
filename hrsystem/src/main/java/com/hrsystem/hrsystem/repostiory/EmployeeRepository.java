@@ -13,9 +13,9 @@ public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
     @Query("SELECT e FROM Employee e WHERE e.manager.id is null")
     List<Employee> getAllEmployees();
 
-    @Query("SELECT e FROM Employee e WHERE e.manager.id =: managerId")
+    @Query("SELECT e FROM Employee e WHERE e.manager.id =:managerId")
     List<Employee> getEmployees(@Param("managerId")Integer managerId);
 
     @Query("SELECT e FROM Employee e WHERE e.team.id =:teamId ")
-    List<Employee> getEmployees(@Param("teamId")Integer teamId);
+    List<Employee> getEmployeesRelatedToTeam(@Param("teamId")Integer teamId);
 }

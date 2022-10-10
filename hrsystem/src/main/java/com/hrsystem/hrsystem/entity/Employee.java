@@ -28,9 +28,6 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "manager_id", referencedColumnName = "id")
     private Employee manager;
-//    @OneToMany(mappedBy = "manager")
-//    private List<Employee> employees = new ArrayList<>();
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
     private List<EmployeeExperties> employeeExperties;
@@ -57,8 +54,6 @@ public class Employee {
         this.birthDate = birthDate;
         this.graduationDate = graduationDate;
         this.startWorkDate = startWorkDate;
-      //  this.gender = gender;
-       // this.degree = degree;
         this.leaves = leaves;
     }
 
@@ -114,14 +109,6 @@ public class Employee {
         return team;
     }
 
-//    public void setEmployees(List<Employee> employees) {
-//        this.employees = employees;
-//    }
-//
-//    public List<Employee> getEmployees() {
-//        return employees;
-//    }
-
     public void setManager(Employee manager) {
         this.manager = manager;
     }
@@ -138,14 +125,6 @@ public class Employee {
         this.employeeExperties = employeeExperties;
     }
 
-//    public Gender getGender() {
-//        return gender;
-//    }
-//
-//    public void se
-//    tGender(Gender gender) {
-//        this.gender = gender;
-//    }
 
     public LocalDate getBirthDate() {
         return birthDate;

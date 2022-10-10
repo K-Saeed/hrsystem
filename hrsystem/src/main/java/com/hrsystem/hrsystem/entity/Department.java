@@ -10,9 +10,6 @@ public class Department {
     private Integer id;
     private String dname;
 
-//    @OneToMany(mappedBy = "department" , cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private List<Employee> employees = new ArrayList<>();
-
     public Department() {
 
     }
@@ -37,14 +34,6 @@ public class Department {
     public void setDname(String dname) {
         this.dname = dname;
     }
-
-//    public void setEmployees(List<Employee> employees) {
-//        this.employees = employees;
-//    }
-//
-//    public List<Employee> getList() {
-//        return employees;
-//    }
 
 
 }
